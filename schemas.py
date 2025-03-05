@@ -33,13 +33,13 @@ class ConfirmacaoSchema(BaseModel):
     convite_id: str
     nome: str
     sobrenome: str
-    telefone: str
+    telefone: int
     
 class ConvidadoSchema(BaseModel):
     aniversariante_id: str
     nome: str
     sobrenome: str
-    telefone: str
+    telefone: int
     confirmado: str
 
 class Confirmacao(BaseModel):
