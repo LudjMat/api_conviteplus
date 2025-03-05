@@ -12,7 +12,8 @@ origins = [
     
     "http://localhost:3000", 
     "http://127.0.0.1:3000",
-	"https://conviteplus.vercel.app"
+	"https://conviteplus.vercel.app",
+    "https://conviteplus.vercel.app/"
 ]
 
 
