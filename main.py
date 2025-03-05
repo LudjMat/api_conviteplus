@@ -9,9 +9,10 @@ app = FastAPI()
 
 # Configurações de CORS
 origins = [
-    "https://opinaaqui.vercel.app",
-    "http://localhost:3000",  # Permitir o frontend em localhost:
-    "http://127.0.0.1:3000", # Outra possibilidade para localhost
+    
+    "http://localhost:3000", 
+    "http://127.0.0.1:3000",
+	"https://conviteplus.vercel.app"
 ]
 
 
