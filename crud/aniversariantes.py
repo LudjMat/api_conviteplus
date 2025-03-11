@@ -1,1 +1,0 @@
-# Funções CRUD para aniversariantes

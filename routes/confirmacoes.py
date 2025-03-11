@@ -27,3 +27,7 @@ def listar_confirmacoes_convite(convite_id: str):
 @router.get("/confirmacoes/num/{convite_id}")
 def buscar_num_confirmacoes(convite_id: str):
     return {"numConfirmacao": get_num_confirmacoes_conviteID(convite_id)}
+
+@router.post("/cancelar-confirmacao")
+def cancelConfirmacao():
+    return {"message": "Confirmacao cancelada"}

@@ -1,6 +1,7 @@
 # Funções CRUD para convites
 from database import supabase
-from schemas import ConviteSchema
+from fastapi import HTTPException
+from schemas import ConviteSchema, ConviteUpdateSchema
 import uuid
 from datetime import datetime
 
@@ -16,7 +17,6 @@ def get_convite(uuid: str):
     # Busca o aniversariante se houver um ID associado
     aniversariante_id = convite.get("aniversariante_id")
     if aniversariante_id:
-        #print(f"🔎 Buscando aniversariante com ID: {aniversariante_id}")  # Depuração
 
         aniversariante_response = (
             supabase.table("aniversariantes")
@@ -37,12 +37,23 @@ def get_convite(uuid: str):
 
     return convite
 
-
-
-
 def create_convite(convite: ConviteSchema):
     convite_data = convite.dict()
     convite_data["id"] = str(uuid.uuid4())
     #convite_data["created_at"] = datetime.utcnow()
     response = supabase.table("convites").insert(convite_data).execute()
     return response.data
+
+def update_convite(uuid: str, convite: ConviteUpdateSchema):
+    convite_data = convite.dict(exclude_unset)
+    response = supabase.table("convites").update(convite_data).eq("id", uuid).execute()
+    return response.data
+
+def delete_convite(uuid: str):
+    convite = get_convite(uuid)
+    if not convite:
+        return HTTPException(status_code=404, detail="Convite nao encontrado")
+    response = supabase.table("convites").delete().eq("id", uuid).execute()
+    return {"message": "Convite deletado com sucesso"}
+    
+        

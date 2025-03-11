@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from database import supabase
-from routes import convites, felicitacoes, convidados, aniversariantes, confirmacoes
+from routes import convites, felicitacoes, convidados, eventos, confirmacoes, usuarios, notificacoes
 import uuid
 from datetime import datetime
 from fastapi.middleware.cors import CORSMiddleware
@@ -27,8 +27,10 @@ app.add_middleware(
 async def root():
     return {"message": "Bem Vinda ao CONVITEplus"}
 
-app.include_router(aniversariantes.router, prefix="/aniversariantes", tags=["Aniversariantes"])
 app.include_router(convidados.router, prefix="/convidados", tags=["Convidados"])
-app.include_router(convites.router, prefix="/convite", tags=["Convites"])
-app.include_router(felicitacoes.router, prefix="/felicitacoes", tags=["Felicitações"])
 app.include_router(confirmacoes.router, prefix="/confirmacao", tags=["Confirmacoes"])
+app.include_router(convites.router, prefix="/convite", tags=["Convites"])
+app.include_router(eventos.router, prefix="/eventos", tags=["Eventos"])
+app.include_router(felicitacoes.router, prefix="/felicitacoes", tags=["Felicitações"])
+app.include_router(notificacoes.router, prefix="/notificacoes", tags=["Notificações"])
+app.include_router(usuarios.router, prefix="/usuarios", tags=["Usuarios"])
