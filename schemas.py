@@ -135,3 +135,23 @@ class NotificacaoCreateSchema(BaseModel):
     
     class Config:
         json_encoders = {datetime: lambda v: v.isoformat()}
+
+class PresenteSchema(BaseModel):
+    id: str #= str(uuid.uuid4())  # Gera um UUID único automaticamente
+    nome_destinatario: str
+    telefone_destinatario: str
+    mensagem: str
+    imagem_url: str | None = None  # Opcional
+    nome_remetente: str
+    telefone_remetente: str | None = None  # Opcional
+    data_envio: datetime = datetime.utcnow()
+
+    class Config:
+        orm_mode = True  # Para funcionar com ORMs como SQLAlchemy
+        json_encoders = {
+            datetime: lambda v: v.strftime("%Y-%m-%d %H:%M:%S"),
+        }
+        
+class PresenteUpdateSchema(BaseModel):
+    mensagem: str | None = None
+    imagem_url: str | None = None
