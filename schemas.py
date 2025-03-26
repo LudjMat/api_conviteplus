@@ -94,7 +94,7 @@ class Confirmacao(BaseModel):
     nome: str
     sobrenome: str
     telefone: int
-    confirmado: bool = True
+    status: bool = True
 
 class UsuariosSchema(BaseModel):
     id: str
