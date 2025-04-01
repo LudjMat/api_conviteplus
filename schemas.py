@@ -6,11 +6,11 @@ from datetime import date, time, datetime
 class EventoSchema(BaseModel):
     id: str
     nome: str
-    descricao: str
+    descricao: Optional[str]
     data: date
     horario: time
     local: str
-    dress_code: str
+    dress_code: Optional[str]
     tipo: str
     usuario_id: str
 
